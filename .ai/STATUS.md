@@ -1,8 +1,8 @@
 # Current Status
 
 **Project:** TalionQA  
-**Phase:** Foundation / Product Discovery  
-**Repository:** initialized  
+**Phase:** Foundation complete / Product Discovery  
+**Repository:** initialized and linked from profile  
 **Current milestone:** V0 — useful finding proof
 
 ## Locked decisions
@@ -13,11 +13,23 @@
 - Development model: shared repo + Claude/Codex + progressive skills
 - Build-vs-buy: reuse commodity tooling
 
-## Active work
-Foundation is being created. No production scanner exists yet.
+## Foundation state
+Ready.
+
+The repository now contains:
+- agent contract and Claude handoff rules;
+- product, architecture, security, UI and roadmap docs;
+- domain contracts;
+- progressive agent skills;
+- monorepo skeleton;
+- first tracked implementation issue.
+
+No production scanner exists yet by design.
 
 ## Next executable task
-**TAL-001 — Define contracts and implement the first safe URL scan path.**
+**TAL-001 — URL → safe scan → normalized findings.**
+
+GitHub issue: #1
 
 ## Do not start yet
 Billing, auth complexity, 24/7 monitor, auto-fix, deploy integrations.
