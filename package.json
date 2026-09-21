@@ -5,7 +5,8 @@
   "description": "Project intelligence, evidence-driven findings and graph-first X-Ray for websites and repositories.",
   "packageManager": "pnpm@12.5.1",
   "engines": {
-    "node": ">=22.0.0"
+    "node": "22.x",
+    "pnpm": "12.5.1"
   },
   "scripts": {
     "dev": "pnpm --filter @talion/web dev",
