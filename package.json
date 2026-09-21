@@ -1,0 +1,9 @@
+{
+  "name": "talionqa",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Project intelligence, evidence-driven findings and graph-first X-Ray for websites and repositories.",
+  "engines": {
+    "node": ">=20.9"
+  }
+}
