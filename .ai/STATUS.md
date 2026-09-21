@@ -1,9 +1,9 @@
 # Current Status
 
 **Project:** TalionQA  
-**Phase:** Foundation complete / Product Discovery  
-**Repository:** initialized and linked from profile  
-**Current milestone:** V0 — useful finding proof
+**Phase:** V0 implementation  
+**Repository:** initialized, linked from profile and CI-enabled  
+**Current milestone:** prove useful deterministic findings
 
 ## Locked decisions
 - Name: TalionQA
@@ -13,23 +13,37 @@
 - Development model: shared repo + Claude/Codex + progressive skills
 - Build-vs-buy: reuse commodity tooling
 
-## Foundation state
-Ready.
+## Implemented baseline
+- Next.js product shell with landing + X-Ray prototype.
+- React Flow / XYFlow graph with Talion-specific nodes.
+- Shared Observation, Evidence, Finding, ScanResult and ProjectGraph contracts.
+- Local Playwright scanner CLI.
+- Public-target URL validation and initial SSRF boundary.
+- Time/request limits.
+- Console error, failed-request and HTTP-error collection.
+- Observation deduplication and deterministic fingerprints.
+- Evidence-first Finding normalization.
+- Tests for contracts, target safety and deduplication.
+- CI for install → typecheck → tests → build.
+- Windows/Linux bootstrap scripts.
+- Agent harness + specialized progressive skills.
 
-The repository now contains:
-- agent contract and Claude handoff rules;
-- product, architecture, security, UI and roadmap docs;
-- domain contracts;
-- progressive agent skills;
-- monorepo skeleton;
-- first tracked implementation issue.
+## Active task
+**TAL-001 — URL → safe scan → normalized findings** is implemented and **IN REVIEW**.
 
-No production scanner exists yet by design.
-
-## Next executable task
-**TAL-001 — URL → safe scan → normalized findings.**
+Remaining verification:
+- clone/bootstrap on the developer PC;
+- install Chromium;
+- run at least one live website scan;
+- inspect the normalized JSON and confirm scanner-generated blocked requests do not become user findings.
 
 GitHub issue: #1
 
+## Next
+After TAL-001 live verification:
+**TAL-002 — real scan result → ProjectGraph → X-Ray.**
+
+The existing X-Ray uses explicit prototype data and must not be presented as a real scan.
+
 ## Do not start yet
-Billing, auth complexity, 24/7 monitor, auto-fix, deploy integrations.
+Billing, auth complexity, 24/7 Guard, auto-fix and deploy integrations.
