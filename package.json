@@ -1,9 +1,19 @@
 {
   "name": "talionqa",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Project intelligence, evidence-driven findings and graph-first X-Ray for websites and repositories.",
+  "packageManager": "pnpm@12.5.1",
   "engines": {
-    "node": ">=20.9"
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --stream --filter @talion/web --filter @talion/scanner dev",
+    "dev:web": "pnpm --filter @talion/web dev",
+    "scan": "pnpm --filter @talion/scanner scan",
+    "build": "pnpm -r --if-present build",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm -r --if-present test",
+    "check": "pnpm typecheck && pnpm test && pnpm build"
   }
 }
