@@ -8,7 +8,7 @@
     "node": ">=22.0.0"
   },
   "scripts": {
-    "dev": "pnpm --parallel --stream --filter @talion/web --filter @talion/scanner dev",
+    "dev": "pnpm --filter @talion/web dev",
     "dev:web": "pnpm --filter @talion/web dev",
     "scan": "pnpm --filter @talion/scanner scan",
     "build": "pnpm -r --if-present build",
