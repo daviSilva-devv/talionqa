@@ -36,3 +36,13 @@ Unverified public assets receive passive/safe analysis only. Intrusive active te
 **Status:** accepted
 
 Private customer source code is not used as model-training data by default.
+
+## D-008 — Agent-assisted frontend workflow
+**Status:** accepted
+
+Frontend agents use progressive skills, 21st.dev for component/inspiration discovery and Playwright MCP for rendered browser QA. External components are adapted into TalionQA rather than treated as a design system.
+
+## D-009 — UI dependencies are demand-driven
+**Status:** accepted
+
+Base UI, Motion, React Bits, Magic UI or other libraries are evaluated when a concrete interaction needs them. They are not bulk-installed into the product merely because they are popular.
