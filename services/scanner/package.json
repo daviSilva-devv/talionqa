@@ -1,0 +1,22 @@
+{
+  "name": "@talion/scanner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "scan": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@talion/contracts": "workspace:*",
+    "ipaddr.js": "^2.2.0",
+    "playwright": "1.63.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "7.0.2",
+    "vitest": "5.0.1"
+  }
+}
