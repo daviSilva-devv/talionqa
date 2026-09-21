@@ -42,7 +42,7 @@ export function XRayCanvas({
           label: node.id === "project" ? target : node.label,
           kind: node.kind,
           status: node.status,
-          meta: node.kind === "finding" ? "Evidence attached" : undefined,
+          ...(node.kind === "finding" ? { meta: "Evidence attached" } : {}),
         },
       })),
     [graph.nodes, target],
@@ -78,12 +78,7 @@ export function XRayCanvas({
         panOnScroll
         proOptions={{ hideAttribution: false }}
       >
-        <Background
-          color="#ddd5ef"
-          gap={24}
-          size={1}
-          variant={BackgroundVariant.Dots}
-        />
+        <Background color="#ddd5ef" gap={24} size={1} variant={BackgroundVariant.Dots} />
         <Controls showInteractive={false} />
       </ReactFlow>
     </div>
