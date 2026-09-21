@@ -1,0 +1,13 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+
+[mcp_servers."21st"]
+url = "https://21st.dev/api/mcp"
+env_http_headers = { "x-api-key" = "API_KEY_21ST" }
+startup_timeout_sec = 20
+tool_timeout_sec = 90
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+startup_timeout_sec = 30
+tool_timeout_sec = 120
