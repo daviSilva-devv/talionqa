@@ -21,6 +21,19 @@ Never commit the value.
 
 The project files reference the environment variable by name.
 
+## Locked-down Windows note
+
+Some corporate Windows machines block Corepack from creating global pnpm/yarn shims under `C:\\Program Files\\nodejs`.
+
+TalionQA's bootstrap does not require admin rights. When a global `pnpm` command is unavailable it calls pnpm through Corepack directly and runs workspace verification without nested package-manager scripts.
+
+Use the commands printed by the bootstrap. On a locked-down machine they will normally look like:
+
+```powershell
+corepack pnpm --filter @talion/web dev
+corepack pnpm --filter @talion/scanner scan -- https://example.com
+```
+
 ## Claude Code
 
 Claude Code reads the committed root `.mcp.json`.
