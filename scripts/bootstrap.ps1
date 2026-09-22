@@ -42,19 +42,25 @@ Invoke-TalionPnpm install
 Write-Host "Installing Chromium for the local scanner..."
 Invoke-TalionPnpm --filter @talion/scanner exec playwright install chromium
 
-Write-Host "Running verification..."
-Invoke-TalionPnpm check
+Write-Host "Running typecheck..."
+Invoke-TalionPnpm -r --if-present typecheck
+
+Write-Host "Running tests..."
+Invoke-TalionPnpm -r --if-present test
+
+Write-Host "Running build..."
+Invoke-TalionPnpm -r --if-present build
 
 Write-Host ""
 Write-Host "TalionQA is ready." -ForegroundColor Green
 
 if ($useDirectPnpm) {
-  Write-Host "Web:     pnpm dev:web"
-  Write-Host "Scanner: pnpm scan -- https://example.com"
+  Write-Host "Web:     pnpm --filter @talion/web dev"
+  Write-Host "Scanner: pnpm --filter @talion/scanner scan -- https://example.com"
 } elseif ($useCorepack) {
-  Write-Host "Web:     corepack pnpm dev:web"
-  Write-Host "Scanner: corepack pnpm scan -- https://example.com"
+  Write-Host "Web:     corepack pnpm --filter @talion/web dev"
+  Write-Host "Scanner: corepack pnpm --filter @talion/scanner scan -- https://example.com"
 } else {
-  Write-Host "Web:     npx -y pnpm@12.5.1 dev:web"
-  Write-Host "Scanner: npx -y pnpm@12.5.1 scan -- https://example.com"
+  Write-Host "Web:     npx -y pnpm@12.5.1 --filter @talion/web dev"
+  Write-Host "Scanner: npx -y pnpm@12.5.1 --filter @talion/scanner scan -- https://example.com"
 }
