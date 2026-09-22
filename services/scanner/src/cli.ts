@@ -1,10 +1,11 @@
 import { scanUrl } from "./scan-url";
 import { TargetValidationError } from "./target";
 
-const target = process.argv[2];
+const args = process.argv.slice(2);
+const target = args[0] === "--" ? args[1] : args[0];
 
 if (!target) {
-  console.error("Usage: pnpm scan -- https://example.com");
+  console.error("Usage: pnpm scan https://example.com");
   process.exitCode = 1;
 } else {
   try {
