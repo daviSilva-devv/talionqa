@@ -3,7 +3,7 @@
 **Project:** TalionQA  
 **Phase:** V0 implementation  
 **Repository:** initialized, linked from profile and CI-enabled  
-**Current milestone:** prove useful deterministic findings
+**Current milestone:** project-aware real findings
 
 ## Locked decisions
 - Name: TalionQA
@@ -26,7 +26,7 @@
 - Evidence-first Finding normalization.
 - Tests for contracts, target safety and deduplication.
 - CI for install → typecheck → tests → build.
-- Windows/Linux bootstrap scripts.
+- Windows/Linux bootstrap scripts, including locked-down Windows fallback through Corepack.
 - Agent harness + specialized progressive skills.
 - 21st.dev MCP shared for UI discovery/retrieval.
 - Playwright MCP shared for browser/accessibility/visual QA.
@@ -34,16 +34,31 @@
 - Claude Code project MCP config + web preview config.
 - Frontend, visual-QA and motion skills.
 
-## Active task
-**TAL-001 — URL → safe scan → normalized findings** is implemented and **IN REVIEW**.
+## Completed
+**TAL-001 — URL → safe scan → normalized findings** is **DONE**.
 
-Remaining verification:
-- clone/bootstrap on the developer PC;
-- install Chromium;
-- run at least one live website scan;
-- inspect the normalized JSON and confirm scanner-generated blocked requests do not become user findings.
+Live developer-PC verification completed on 2026-09-22:
+- bootstrap completed on locked-down Windows without admin pnpm shim;
+- local Next.js app returned HTTP 200;
+- Chromium scanner completed a healthy scan against `https://example.com` with zero findings;
+- positive scan against `https://example.com/talionqa-test-404` produced HTTP and console Observations, Evidence records and normalized Findings;
+- no fabricated findings were produced in the healthy control case.
 
-GitHub issue: #1
+### Important product signal from the first real positive scan
+The same HTTP 404 produced:
+- one `http_error` Finding;
+- one browser `console_error` Finding.
+
+This is acceptable for TAL-001 because normalization is working, but it demonstrates the need for semantic correlation/grouping so one underlying problem is not presented as multiple user-facing issues.
+
+GitHub issue: #1 closed.
+
+## Active / next task
+**TAL-002 — real ScanResult → ProjectGraph → X-Ray.**
+
+The existing X-Ray uses explicit prototype data and must not be presented as a real scan.
+
+TAL-002 should preserve raw Findings but introduce a projection/correlation boundary so multiple signals can later collapse into one project-aware issue without destroying source evidence.
 
 ## Local AI tooling still required
 On the developer PC:
@@ -51,13 +66,7 @@ On the developer PC:
 - `API_KEY_21ST` set locally if 21st MCP will be used;
 - project MCP servers reviewed/trusted.
 
-Use `scripts/check-ai-tooling.ps1` on Windows.
-
-## Next
-After TAL-001 live verification:
-**TAL-002 — real scan result → ProjectGraph → X-Ray.**
-
-The existing X-Ray uses explicit prototype data and must not be presented as a real scan.
+Use `scripts/check-ai-tooling.cmd` on locked-down Windows.
 
 ## Do not start yet
 Billing, auth complexity, 24/7 Guard, auto-fix and deploy integrations.
