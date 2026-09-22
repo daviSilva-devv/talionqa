@@ -54,7 +54,7 @@ Then:
 
 ```bash
 pnpm dev:web
-pnpm scan -- https://example.com
+pnpm scan https://example.com
 ```
 
 See `docs/LOCAL_DEV.md` for details.
