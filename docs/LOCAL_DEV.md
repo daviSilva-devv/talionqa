@@ -37,7 +37,7 @@ The X-Ray route currently uses **explicit prototype data**. It is a visual found
 
 ## Scanner
 ```bash
-pnpm scan -- https://example.com
+pnpm scan https://example.com
 ```
 
 The scanner runs locally and prints a normalized JSON report containing:
