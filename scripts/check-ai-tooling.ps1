@@ -3,10 +3,12 @@ $ErrorActionPreference = "Stop"
 Write-Host "TalionQA AI tooling check" -ForegroundColor Magenta
 Write-Host ""
 
-function Check-Command([string]$Name) {
-  $command = Get-Command $Name -ErrorAction SilentlyContinue
+function Has-Command([string]$Name) {
+  return [bool](Get-Command $Name -ErrorAction SilentlyContinue)
+}
 
-  if ($command) {
+function Print-CommandStatus([string]$Name) {
+  if (Has-Command $Name) {
     Write-Host "[OK] $Name" -ForegroundColor Green
     return $true
   }
@@ -15,10 +17,20 @@ function Check-Command([string]$Name) {
   return $false
 }
 
-$hasNode = Check-Command "node"
-$hasPnpm = Check-Command "pnpm"
-$hasClaude = Check-Command "claude"
-$hasCodex = Check-Command "codex"
+$hasNode = Print-CommandStatus "node"
+$hasPnpm = Has-Command "pnpm"
+$hasCorepack = Has-Command "corepack"
+
+if ($hasPnpm) {
+  Write-Host "[OK] pnpm" -ForegroundColor Green
+} elseif ($hasCorepack) {
+  Write-Host "[OK] pnpm via corepack (no global shim required)" -ForegroundColor Green
+} else {
+  Write-Host "[MISSING] pnpm/corepack" -ForegroundColor Yellow
+}
+
+$hasClaude = Print-CommandStatus "claude"
+$hasCodex = Print-CommandStatus "codex"
 
 if ($env:API_KEY_21ST) {
   Write-Host "[OK] API_KEY_21ST is set" -ForegroundColor Green
@@ -42,11 +54,6 @@ if ($hasCodex) {
 if (-not $hasNode) {
   Write-Host ""
   Write-Host "Node.js 22+ is required for TalionQA and Playwright MCP." -ForegroundColor Yellow
-}
-
-if (-not $hasPnpm) {
-  Write-Host ""
-  Write-Host "Run .\scripts\bootstrap.ps1 after Node.js is installed." -ForegroundColor Yellow
 }
 
 Write-Host ""
