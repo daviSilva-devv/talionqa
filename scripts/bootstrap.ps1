@@ -56,11 +56,11 @@ Write-Host "TalionQA is ready." -ForegroundColor Green
 
 if ($useDirectPnpm) {
   Write-Host "Web:     pnpm --filter @talion/web dev"
-  Write-Host "Scanner: pnpm --filter @talion/scanner scan -- https://example.com"
+  Write-Host "Scanner: pnpm --filter @talion/scanner scan https://example.com"
 } elseif ($useCorepack) {
   Write-Host "Web:     corepack pnpm --filter @talion/web dev"
-  Write-Host "Scanner: corepack pnpm --filter @talion/scanner scan -- https://example.com"
+  Write-Host "Scanner: corepack pnpm --filter @talion/scanner scan https://example.com"
 } else {
   Write-Host "Web:     npx -y pnpm@12.5.1 --filter @talion/web dev"
-  Write-Host "Scanner: npx -y pnpm@12.5.1 --filter @talion/scanner scan -- https://example.com"
+  Write-Host "Scanner: npx -y pnpm@12.5.1 --filter @talion/scanner scan https://example.com"
 }
